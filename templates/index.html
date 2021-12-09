@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<style>
+    body {
+        background-image: linear-gradient(to bottom, #dee8ff, white);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: medium;
+    }
+
+    form {
+        margin: auto;
+        width: 50%;
+    }
+
+    .result {
+        margin: auto;
+        width: 50%;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<head>
+    <title>Outbound Flights Prediction</title>
+</head>
+<body>
+    <h1 style="text-align: center;">CS543 Fall 2021 - Group 6 - Project 2</h1>
+    <h2 style="text-align: center;">Total Outbound Flights Prediction</h2>
+    <h3 style="text-align: center;">Team Members: Arwa EL-Hawwat, Jaini Patel, Rahul Dev Ellezhuthil</h3>
+
+    <form action="{{ url_for('predict') }}" method="POST">
+        <fieldset>
+            <legend>Input values:</legend>
+            Month:
+            <input name="month" type="number" required>
+            <br>
+            <br> Date:
+            <input name="date" type="number" required>
+            <br>
+            <br> Origin Airport Name:
+            <input name="airport" type="text" required>
+            <br>
+            <br>
+            <input type="submit" style="height:40px; width:100px">
+        </fieldset>
+    </form>
+    <br>
+
+    <div class="result" align="center">
+        {% if result %}
+            {% for variable, value in original_input.items() %}
+                <b>{{ variable }}</b> : {{ value }}
+            {% endfor %}
+            <br>
+            <br> Predicted number of Outbound flights:
+               <p style="font-size:50px">{{ result }}</p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
